@@ -1,6 +1,6 @@
 package habittracker.services;
 
-import habittracker.model.User;
+import habittracker.models.User;
 
 public interface AuthService {
     User register(String username, String email, String password) throws IllegalArgumentException;

@@ -1,4 +1,4 @@
-package habittracker.model;
+package habittracker.models;
 
 import java.time.LocalDate;
 import java.util.Comparator;

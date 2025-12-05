@@ -1,4 +1,4 @@
-package habittracker.model;
+package habittracker.models;
 
 public abstract class Notification {
     protected String message;

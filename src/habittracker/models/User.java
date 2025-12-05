@@ -1,4 +1,4 @@
-package habittracker.model;
+package habittracker.models;
 
 import java.util.ArrayList;
 import java.util.List;

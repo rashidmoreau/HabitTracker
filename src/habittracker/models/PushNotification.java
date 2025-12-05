@@ -1,4 +1,4 @@
-package habittracker.model;
+package habittracker.models;
 
 public class PushNotification extends Notification {
     private String deviceToken;

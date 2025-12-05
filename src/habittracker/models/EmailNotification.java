@@ -1,4 +1,4 @@
-package habittracker.model;
+package habittracker.models;
 
 public class EmailNotification extends Notification {
     private String toAddress;
