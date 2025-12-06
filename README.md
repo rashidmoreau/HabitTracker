@@ -89,7 +89,4 @@ Breakdown of completions per habit
 
 1. Open the project folder in **VS Code**.  
 2. Ensure the Java Extension Pack is installed.  
-3. Verify VS Code is using **JDK 17+**:  
-   - Open Command Palette → `Java: Configure Java Runtime`  
-   - Select your JDK 17 installation  
-4. Open the file:  
+3. Open the file:  
