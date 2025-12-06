@@ -5,6 +5,7 @@ The Habit Tracker is a Java desktop application designed to help users build and
 
 Users can register, log in, create habits, track their daily completions, and view weekly summaries of their progress with streak tracking. The application is built using Java 17 and Swing, implementing an MVC-style architecture to ensure maintainability and scalability.
 
+
 🧱 Layer Descriptions
 Models (models/)
 
