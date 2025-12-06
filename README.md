@@ -1,82 +1,79 @@
-# HabitTracker
-Overview
+# Habit Tracker 
 
-The Habit Tracker is a Java desktop application designed to help users build and maintain positive daily habits. The project emphasizes clean software design, following principles of low coupling and high cohesion, with clear separation between Models, Services, and the User Interface.
+## Overview
 
-Users can register, log in, create habits, track their daily completions, and view weekly summaries of their progress with streak tracking. The application is built using Java 17 and Swing, implementing an MVC-style architecture to ensure maintainability and scalability.
+The **Habit Tracker** is a Java desktop application designed to help users build and maintain positive daily habits. The project emphasizes clean software design, following principles of **low coupling** and **high cohesion**, with clear separation between Models, Services, and the User Interface.
 
+Users can register, log in, create habits, track daily completions, and view weekly summaries of their progress with streak tracking. The application is built using **Java 17** and **Swing**, following an MVC-style architecture to ensure maintainability and scalability.
 
-🧱 Layer Descriptions
-Models (models/)
+---
 
-The Models layer contains classes that represent core data structures in the application, such as:
+## 🧱 Layer Descriptions
 
-User
+### **Models (`models/`)**
+Represents the core data of the system. These classes define the application's domain objects and their internal state. This layer includes:
 
-Habit
+- `User`
+- `Habit`
+- `HabitSchedule`
+- `Completion`
+- `Reminder`
+- `SummaryReport`
+- `Notification` classes
+- `StreakCalculator`
 
-HabitSchedule
+Each model class has a single responsibility and does not manage application workflow or logic beyond its own state.
 
-Completion
+---
 
-Reminder
+### **Services (`services/`)**
+Contains the business logic of the application. These classes coordinate operations between models and ensure proper system behavior. This layer includes:
 
-SummaryReport
+- `AuthService` and `InMemoryAuthService` for authentication
+- `HabitService` for habit creation, updating completions, generating summaries, and orchestrating streak calculations
 
-Notification classes
+The service layer allows the UI to remain lightweight while preventing tight coupling between data and presentation.
 
-StreakCalculator
+---
 
-These classes hold data and simple logic relevant to their own state but do not manage workflow or application control.
+### **User Interface (`ui/`)**
+Implements the Swing-based graphical interface. These classes manage user interaction and display information but do not contain business logic. This layer includes:
 
-Services (services/)
+- `LoginFrame` — handles user login and registration
+- `DashboardFrame` — main application window for habit management
+- `HabitTableModel` — table model used to display habits in the UI
 
-The Services layer provides business logic for the application. It includes:
+This separation ensures that UI components remain focused on interaction and visualization only.
 
-AuthService / InMemoryAuthService for user registration and login
+---
 
-HabitService for creating habits, updating completions, generating summaries, and orchestrating streak calculations
+## ✨ Features
 
-Services allow the UI to remain lightweight and eliminate tight coupling between system components.
+### ✔ User Management
+- Create new user accounts  
+- Log in with existing credentials  
 
-User Interface (ui/)
+### ✔ Habit Management
+- Add new habits with custom descriptions  
+- Edit or delete habits  
+- Set reminder times  
+- View all habits in a dashboard table  
 
-The UI layer contains the Swing-based graphical interface, including:
+### ✔ Daily Tracking
+- Mark habits as completed for the current day  
+- Automatic streak calculation:
+  - Current streak
+  - Longest streak
 
-LoginFrame
+### ✔ Weekly Summary
+- View total completions for the week  
+- Breakdown of completions by habit  
 
-DashboardFrame
-
-HabitTableModel
-
-These classes manage user interaction, display information, and delegate work to the service layer. The UI never contains business logic itself, preserving separation of concerns.
-
-✨ Features
-✔ User Management
-
-Register new accounts
-
-Log in with existing credentials
-
-✔ Habit Management
-
-Add new habits with custom descriptions
-
-Set reminder times
-
-Edit or delete habits
-
-View habits in a table-based dashboard
-
-✔ Daily Tracking
-
-Mark habits as completed for the current day
-
-Automatic streak updates:
-
-Current streak
-
-Longest streak
+### ✔ Clean Architecture Principles
+- High cohesion within each class  
+- Low coupling across layers  
+- Clear separation of concerns (Models, Services, UI)  
+- Easily extendable for future features such as persistence, enhanced reminders, or monthly reports
 
 ✔ Weekly Summary Report
 
