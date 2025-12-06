@@ -1,13 +1,17 @@
 package habittracker.ui;
 
 import habittracker.models.Habit;
+import habittracker.models.HabitSchedule;
 import habittracker.models.SummaryReport;
 import habittracker.models.User;
 import habittracker.services.HabitService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.EnumSet;
+import java.util.Set;
 
 public class DashboardFrame extends JFrame {
 
@@ -67,27 +71,43 @@ public class DashboardFrame extends JFrame {
         return tableModel.getHabitAt(row);
     }
 
-    private void addHabit() {
-        String name = JOptionPane.showInputDialog(this, "Habit name:");
-        if (name == null || name.isBlank()) return;
+private void addHabit() {
+    String name = JOptionPane.showInputDialog(this, "Habit name:");
+    if (name == null || name.isBlank()) return;
 
-        String desc = JOptionPane.showInputDialog(this, "Description (optional):");
-        if (desc == null) desc = "";
+    String desc = JOptionPane.showInputDialog(this, "Description (optional):");
+    if (desc == null) desc = "";
 
-        String timeStr = JOptionPane.showInputDialog(this,
-                "Reminder time (HH:MM, 24h, default 09:00):");
-        LocalTime time = LocalTime.of(9, 0);
-        try {
-            if (timeStr != null && !timeStr.isBlank()) {
-                time = LocalTime.parse(timeStr.trim());
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Invalid time, using 09:00.");
+    // ask user for a reminder time
+    String timeStr = JOptionPane.showInputDialog(this,
+            "Reminder time (HH:MM, 24h, default 09:00):");
+    LocalTime time = LocalTime.of(9, 0);
+    try {
+        if (timeStr != null && !timeStr.isBlank()) {
+            time = LocalTime.parse(timeStr.trim());
         }
-
-        habitService.createDailyHabit(user, name, desc, time);
-        tableModel.refresh();
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Invalid time, using 09:00.");
     }
+
+    ScheduleDialog sd = new ScheduleDialog(this, EnumSet.allOf(DayOfWeek.class));
+    sd.setVisible(true);
+
+    if (!sd.isConfirmed()) {
+        return;
+    }
+
+    Set<DayOfWeek> selectedDays = sd.getSelectedDays();
+
+    // make schedule with selected days
+    HabitSchedule schedule = new HabitSchedule(selectedDays, time);
+
+    Habit habit = new Habit(name, desc, schedule);
+    user.addHabit(habit);
+
+    tableModel.refresh();
+}
+
 
     private void editHabit() {
         Habit h = getSelectedHabit();
@@ -97,12 +117,22 @@ public class DashboardFrame extends JFrame {
         if (newName != null && !newName.isBlank()) {
             h.setName(newName.trim());
         }
+
         String newDesc = JOptionPane.showInputDialog(this, "New description:", h.getDescription());
         if (newDesc != null) {
             h.setDescription(newDesc);
         }
+
+        ScheduleDialog sd = new ScheduleDialog(this, h.getSchedule().getDays());
+        sd.setVisible(true);
+
+        if (sd.isConfirmed()) {
+            h.getSchedule().setDays(sd.getSelectedDays());
+        }
+
         tableModel.refresh();
     }
+
 
     private void deleteHabit() {
         Habit h = getSelectedHabit();
