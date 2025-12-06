@@ -74,3 +74,22 @@ This separation ensures that UI components remain focused on interaction and vis
 View total completions for the current week
 
 Breakdown of completions per habit
+
+---
+
+# 🚀 Running the Project
+
+## Requirements
+- **Java 17 or later (JDK)**  
+- A Java-enabled IDE or editor (e.g., **VS Code with Java Extension Pack**, IntelliJ, Eclipse)
+
+---
+
+## Running in VS Code
+
+1. Open the project folder in **VS Code**.  
+2. Ensure the Java Extension Pack is installed.  
+3. Verify VS Code is using **JDK 17+**:  
+   - Open Command Palette → `Java: Configure Java Runtime`  
+   - Select your JDK 17 installation  
+4. Open the file:  
