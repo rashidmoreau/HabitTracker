@@ -2,7 +2,7 @@
 
 ## Overview
 
-The **Habit Tracker** is a Java application designed to help users build and maintain positive daily habits. The project emphasizes clean software design, following principles of **low coupling** and **high cohesion** discussed in several in my courses, with clear separation between Models, Services, and the User Interface.
+The **Habit Tracker** is a Java application designed to help users build and maintain positive daily habits. The project emphasizes clean software design, following principles of **low coupling** and **high cohesion** discussed in several of my courses, with clear separation between Models, Services, and the User Interface.
 
 Users can register, log in, create habits, track daily completions, and view weekly summaries of their progress with streak tracking. The application is built using **Java 17** and **Swing**, following an MVC-style architecture to ensure maintainability and scalability.
 
