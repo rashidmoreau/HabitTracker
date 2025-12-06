@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.util.EnumSet;
 import java.util.Set;
 
+// main dahsboard window after login
 public class DashboardFrame extends JFrame {
 
     private final User user;
@@ -20,6 +21,7 @@ public class DashboardFrame extends JFrame {
     private HabitTableModel tableModel;
     private JTable table;
 
+    // creates dashboard for given user
     public DashboardFrame(User user, HabitService habitService) {
         super("Habit Tracker - " + user.getUsername());
         this.user = user;
@@ -27,6 +29,7 @@ public class DashboardFrame extends JFrame {
         initComponents();
     }
 
+    // initialize UI components
     private void initComponents() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 400);
@@ -55,6 +58,7 @@ public class DashboardFrame extends JFrame {
 
         add(bottomPanel, BorderLayout.SOUTH);
 
+        // button actions
         addButton.addActionListener(e -> addHabit());
         editButton.addActionListener(e -> editHabit());
         deleteButton.addActionListener(e -> deleteHabit());

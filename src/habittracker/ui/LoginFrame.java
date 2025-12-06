@@ -7,6 +7,7 @@ import habittracker.services.HabitService;
 import javax.swing.*;
 import java.awt.*;
 
+// login and registration window
 public class LoginFrame extends JFrame {
 
     private final AuthService authService;
@@ -16,6 +17,7 @@ public class LoginFrame extends JFrame {
     private JTextField emailField;
     private JPasswordField passwordField;
 
+    // creates login frame
     public LoginFrame(AuthService authService, HabitService habitService) {
         super("Habit Tracker - Login");
         this.authService = authService;
@@ -23,6 +25,7 @@ public class LoginFrame extends JFrame {
         initComponents();
     }
 
+    // initialize UI components
     private void initComponents() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 250);
@@ -57,6 +60,7 @@ public class LoginFrame extends JFrame {
         registerButton.addActionListener(e -> register());
     }
 
+    // handle login action
     private void login() {
         try {
             String username = usernameField.getText().trim();
@@ -69,6 +73,7 @@ public class LoginFrame extends JFrame {
         }
     }
 
+    // handle registration action
     private void register() {
         try {
             String username = usernameField.getText().trim();
@@ -83,6 +88,7 @@ public class LoginFrame extends JFrame {
         }
     }
 
+    // open dashboard for logged in user
     private void openDashboard(User user) {
         SwingUtilities.invokeLater(() -> {
             new DashboardFrame(user, habitService).setVisible(true);
